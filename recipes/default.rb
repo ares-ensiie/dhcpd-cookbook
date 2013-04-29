@@ -32,8 +32,5 @@ template node[:dhcpd][:dhcpd_conf_file] do
   owner "root"
   group "root"
   mode 0644
-  variables(
-    :secret => search(:zones, "domain:#{node[:dhcpd][:domain]} AND ddns:true" ).first["secret"]
-    )
   notifies(:restart, resources(:service => "dhcpd"))
 end

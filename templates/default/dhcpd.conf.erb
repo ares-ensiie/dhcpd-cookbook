@@ -1,14 +1,6 @@
-<% if @secret -%>
-ddns-update-style interim;
-ddns-updates on;
 <% if node[:dhcp][:ignore_clientupdates] -%>
 ignore client-updates;
 <% end %>
-
-key ddns-server {
-	algorithm hmac-md5;
-	secret <%= @secret %>;
-}
 
 zone <%= node[:dhcpd][:domain] %>. { 
 	primary node[:dhcpd][:nameservers ][0];
@@ -18,9 +10,6 @@ zone <%= node[:dhcpd][:domain] %>. {
 zone <%= node[:dhcp][:revdomainname] %>. {
 	
 }
-<% end %>
-<% else -%>
-ddns-update-style none;
 <% end %>
 
 # option definitions common to all supported networks...

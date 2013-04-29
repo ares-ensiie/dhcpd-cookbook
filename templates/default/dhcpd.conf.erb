@@ -2,10 +2,6 @@
 ignore client-updates;
 <% end %>
 
-zone <%= node[:dhcpd][:domain] %>. { 
-	primary node[:dhcpd][:nameservers ][0];
-	key ddns-server;
-}
 <% if node[:dhcp][:revdomainname] -%>
 zone <%= node[:dhcp][:revdomainname] %>. {
 	
